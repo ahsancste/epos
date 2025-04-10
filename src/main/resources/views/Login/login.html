@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Legal Affairs | Log in</title>
+    <link rel="shortcut icon" type="image/jpg" href="../../images/ibbl-logo.png"/>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link th:rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+    <!-- Ionicons -->
+    <link th:rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link th:rel="stylesheet" th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+    <!-- Toastr -->
+    <link th:rel="stylesheet" th:href="@{/plugins/toastr/toastr.min.css}">
+    <!--News Ticker-->
+    <link th:rel="stylesheet" th:href="@{/plugins/news-ticker-controls-acme/style.min.css}">
+    <!-- Theme style -->
+    <link th:rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        .login-box-msg, .register-box-msg {
+            margin: 0;
+            padding: 0 5px 5px;
+            text-align: center;
+        }
+        .login-box, .register-box {
+            width: 450px;
+
+        }
+
+        /*news ticker*/
+        .acme-news-ticker-label {
+            background: #218838;
+            color: #fff;
+        }
+
+        .acme-news-ticker {
+            background: #fff;
+            height: 45px;
+            border: 1px solid #E9ECEF;
+        }
+        ul.my-news-ticker a {
+            color: #0069D9;
+        }
+        .acme-news-ticker-controls {
+            width: 70px;
+        }
+
+        .acme-news-ticker {
+            position: absolute;
+            left: -5%;
+            margin-top: 42%;
+            margin-left: 20%;
+            width: 75%;
+        }
+    </style>
+</head>
+
+<body class="hold-transition login-page">
+
+
+
+
+
+<div class="login-box">
+    <div class="login-logo">
+<!--        <img th:src="@{/images/ibbl-logo.png}" alt="IBBL" class="brand-image"-->
+<!--             style="opacity: .8">-->
+
+      <div class="card card-widget widget-user-2">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+
+        <div class="widget-user-header">
+          <div class="widget-user-image">
+            <img th:src="@{/images/ibbl-logo.png}" alt="IBBL" class="img-circle">
+          </div>
+          <!-- /.widget-user-image -->
+          <h3 class="widget-user-username">Islami Bank Bangladesh Limited</h3>
+          <h5 class="widget-user-desc"></h5>
+        </div>
+        <div class="card-footer p-0">
+
+        </div>
+      </div>
+    </div>
+       <!-- /.login-logo -->
+
+
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg bg-green">Legal Affairs Management System</p>
+            <p class="login-box-msg">Sign in to start your session</p>
+
+            <form th:action="@{/login}" method="post" th:object="${loginForm}" >
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="User Name" th:field="*{username}"
+                           th:classappend="${#fields.hasErrors('username')} ? is-invalid :''">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                    <span th:if="${#fields.hasErrors('username')}" th:errorclass="invalid-feedback" th:errors="*{username}" />
+
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Password" th:field="*{password}"
+                           th:classappend="${#fields.hasErrors('password')} ? is-invalid :''">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                    <span th:if="${#fields.hasErrors('password')}" th:errorclass="invalid-feedback" th:errors="*{password}" />
+
+                </div>
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" placeholder="Branch" th:field="*{brCode}"
+                           th:classappend="${#fields.hasErrors('brCode')} ? is-invalid :''">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-address-card"></span>
+                        </div>
+                    </div>
+                    <span th:if="${#fields.hasErrors('brCode')}" th:errorclass="invalid-feedback" th:errors="*{brCode}" />
+
+                </div>
+
+<!--                <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="text-danger" />-->
+                 <div class="text-danger"
+                     th:if="${param.error}"
+                     th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+                    Your login attempt was not successful, try again.<br/>
+                    Reason: <span th:text="${errorMsg}">Wrong input!</span>
+                </div>
+
+                <div class="text-success" th:if="${param.logout}">You've been logged out successfully.</div>
+
+                <div class="row">
+                    <div class="col-8">
+                     </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+            </form>
+
+
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>
+<!-- /.login-box -->
+
+<div class="acme-news-ticker">
+    <div class="acme-news-ticker-label">Quranic Verses</div>
+
+    <div class="acme-news-ticker-box">
+        <ul class="my-news-ticker">
+            <li><a href="#">Allah has permitted trading and forbidden Riba (usury)(Quran 2:275)</a></li>
+            <li><a href="#">And what you give in usury (riba), that it may increase upon the people's wealth, increases not with God. (Quran 30:39)</a></li>
+            <li><a href="#">... for their taking usury (riba), that they were prohibited, ... (Quran 4:161)</a></li>
+            <li><a href="#">O believers, devour not usury (riba), doubled and redoubled, and fear you God; haply so you will prosper. (Quran 3:129-130)</a></li>
+            <li><a href="#">Indeed, Allah orders justice and good conduct and giving to relatives and forbids immorality and bad conduct and oppression. (Quran 16:90)</a></li>
+           </ul>
+
+    </div>
+    <div class="acme-news-ticker-controls acme-news-ticker-horizontal-controls">
+        <button class="acme-news-ticker-arrow acme-news-ticker-prev"></button>
+        <button class="acme-news-ticker-pause"></button>
+        <button class="acme-news-ticker-arrow acme-news-ticker-next"></button>
+    </div>
+</div>
+
+
+<!-- jQuery -->
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- Toastr -->
+<script th:src="@{/plugins/toastr/toastr.min.js}"></script>
+<!--News Ticker-->
+<script th:src="@{/plugins/news-ticker-controls-acme/acmeticker.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+<script th:inline="javascript">
+/*    let logoutMessage=[[${param.logout}]];
+    let errorMessage=[[${errorMsg}]];
+    if(errorMessage !=null|| errorMessage!=""){
+        toastr.error(errorMessage);
+    }
+    else if (logoutMessage!=null || logoutMessage!=""){
+        toastr.success(logoutMessage);
+
+    }*/
+</script>
+<script>
+    $(function(){
+        $('.my-news-ticker').AcmeTicker({
+            type:'typewriter',/*horizontal/horizontal/Marquee/type*/
+            direction: 'right',/*up/down/left/right*/
+            speed:50,/*true/false/number*/ /*For vertical/horizontal 600*//*For marquee 0.05*//*For typewriter 50*/
+            controls: {
+                prev: $('.acme-news-ticker-prev'),/*Can be used for horizontal/horizontal/typewriter*//*not work for marquee*/
+                toggle: $('.acme-news-ticker-pause'),/*Can be used for horizontal/horizontal/typewriter*//*not work for marquee*/
+                next: $('.acme-news-ticker-next')/*Can be used for horizontal/horizontal/marquee/typewriter*/
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>

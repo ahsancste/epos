@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Legal Affairs</title>
+    <link rel="shortcut icon" type="image/jpg" href="../../images/ibbl-logo.png"/>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link th:rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+    <!-- Ionicons -->
+    <link th:rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link th:rel="stylesheet" th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link th:rel="stylesheet" th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+    <!-- Select2 -->
+    <link th:rel="stylesheet" th:href="@{/plugins/select2/css/select2.min.css}">
+    <link th:rel="stylesheet" th:href="@{/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css}">
+
+    <!-- DataTables -->
+    <link th:rel="stylesheet" th:href="@{/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}">
+    <link th:rel="stylesheet" th:href="@{/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}">
+    <!-- SweetAlert2 -->
+    <link th:rel="stylesheet" th:href="@{/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css}">
+    <!-- Toastr -->
+    <link th:rel="stylesheet" th:href="@{/plugins/toastr/toastr.min.css}">
+    <!-- pace-progress -->
+    <link th:rel="stylesheet" th:href="@{/plugins/pace-progress/themes/green/pace-theme-loading-bar.css}">
+    <!-- Theme style -->
+    <link th:rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" th:rel="stylesheet">
+    <link th:rel="stylesheet" th:href="@{/css/initialize.css}">
+
+</head>
+<body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-dark navbar-teal">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a th:href="@{/}" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
+
+        <!-- SEARCH FORM -->
+        <form class="form-inline ml-3">
+            <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown" th:if="${loginInfoBean!=null}">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-user-circle"></i>
+                   <span  class="hidden-xs" th:text="${loginInfoBean.fullName}"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar"
+                                 class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    <div th:text="${loginInfoBean.fullName}"></div>
+<!--                                    Ahsan Habib - Senior Officer-->
+                                    <!-- <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>-->
+                                </h3>
+                                <p class="text-sm" th:text="|Joined: ${loginInfoBean.joiningDate}|"></p>
+<!--                                 <p class="text-sm text-muted"><i class="far fa-bank"></i> 213-Head Office</p>-->
+                                 <p class="text-sm text-muted"><i class="far fa-bank"></i>
+                                 <span th:text="|${loginInfoBean.brCode} - |"></span></p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+
+                    <a th:href="@{/logout}" class="dropdown-item dropdown-footer btn btn-default">Sign out</a>
+
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar  elevation-4 sidebar-light-olive">
+
+        <!-- Brand Logo -->
+        <a th:href="@{/}" class="brand-link">
+            <img th:src="@{/images/ibbl-logo.png}" alt="IBBL" class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">Legal Affairs</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="info">
+
+                    <a href="#" class="d-block"> <i class="elevation-2 fas fa-university"></i> Head Office(213)</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column text-sm" id="sideMenu" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview">
+                        <a th:href="@{/}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+<!--                                <i class="right fas fa-angle-left"></i>-->
+                            </p>
+                        </a>
+                        </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                Panel lawyer home
+                                <i class="fas fa-angle-left right"></i>
+                                <span class="badge badge-info right">2</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a th:href="@{/lawyer/create}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add Panel lawyer</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a th:href="@{/lawyer}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Modify panel lawyer</p>
+                                </a>
+                            </li>
+
+                         <!--   <li class="nav-item">
+                                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>ADD IMAGE / PHOTO OF THE LAWYER</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="../layout/fixed-sidebar.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>RENEWAL/ DELISTMENT/ RE-ENLISTMENT OF THE LAWYER</p>
+                                </a>
+                            </li>-->
+
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                Record Case/Suit/Writ
+                                <i class="fas fa-angle-left right"></i>
+                                <span class="badge badge-info right">3</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                               <li class="nav-item">
+                                   <a th:href="@{/case/artha-rin}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Artha Rin Suit</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a th:href="@{/case/artha-jari}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Artha Jari Suit</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../layout/fixed-sidebar.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>CR Case Under NI Act</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header text-sm">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <th:block layout:fragment="breadcrumb"></th:block>
+                </div>
+            </div><!-- /.container-fluid -->
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content text-sm">
+            <th:block layout:fragment="content"></th:block>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer text-sm">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b><span th:text="${loginInfoBean.versionNumber}"></span>
+        </div>
+        <strong>Copyright &copy; 2021 <a href="https://www.islamibankbd.com/" target="_blank">Islami Bank Bangladesh
+            Ltd</a>.</strong> All rights
+        reserved.
+      </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<!--<script type="text/javascript" th:src="@{/plugins/iCheck/icheck.min.js}"></script>-->
+<!-- jQuery -->
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- Select2 -->
+<script th:src="@{/plugins/select2/js/select2.full.min.js}"></script>
+
+<!-- DataTables -->
+<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+<script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+<script th:src="@{/js/jquery.spring-friendly.js}"></script>
+
+<!-- InputMask -->
+<script th:src="@{/plugins/moment/moment.min.js}"></script>
+<script th:src="@{/plugins/inputmask/min/jquery.inputmask.bundle.min.js}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script th:src="@{/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
+<!-- jquery-validation -->
+<script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
+<script th:src="@{/plugins/jquery-validation/additional-methods.min.js}"></script>
+<!-- SweetAlert2 -->
+<script th:src="@{/plugins/sweetalert2/sweetalert2.min.js}"></script>
+<!-- Toastr -->
+<script th:src="@{/plugins/toastr/toastr.min.js}"></script>
+<!-- pace-progress -->
+<script th:src="@{/plugins/pace-progress/pace.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<!--<script th:src="@{/dist/js/demo.js}"></script>-->
+<!-- Page script -->
+<script type="text/javascript" th:src="@{/js/initialize.js}"></script>
+
+<!--page level scripts goes here-->
+<th:block layout:fragment="footerScript"></th:block>
+
+</body>
+</html>
+<!--theme admin lte v3. customized by Ahsan Habib-->
