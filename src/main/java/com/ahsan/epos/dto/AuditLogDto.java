@@ -24,4 +24,5 @@ public class AuditLogDto implements Serializable {
     String deviceName;
     String deviceType;
     Boolean success;
+
 }
